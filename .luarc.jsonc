@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "LuaJIT",
+    "pathStrict": true,
+    // matches the way I have structured the plugins
+    "path": [
+      "?.lua",
+      "lua/?.lua",
+      "lua/?.lua",
+      "lua/?/?.lua"
+    ]
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [
+      // Runtime and builtin libraries.
+      "$VIMRUNTIME/lua",
+      "${3rd}/luv/library",
+      // Extra custom bits.
+      "lua/icons.lua",
+      "lua/vim-pack.lua",
+      // Include some plugins for API completion.
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/codecompanion.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/conform.nvim/lua/",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/everforest-nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/fzf-lua/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/gitsigns.nvim/lua/",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/kanagawa.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.ai/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.clue/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.icons/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.statusline/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.surround/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/render-markdown.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/telescope.nvim/lua",
+    ]
+  }
+}
