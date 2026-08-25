@@ -38,6 +38,7 @@ local fzf_lua_spec = {
             files = fzf_lua.files,
             oldfiles = fzf_lua.oldfiles,
             resume = fzf_lua.resume,
+            registers = fzf_lua.registers,
             undotree = fzf_lua.undotree,
             git_status = fzf_lua.git_status,
             git_commits = fzf_lua.git_commits,

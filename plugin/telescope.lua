@@ -93,6 +93,7 @@ local spec = {
             help_tags = builtin.help_tags,
             oldfiles = builtin.oldfiles,
             resume = builtin.resume,
+            registers = builtin.registers,
             undotree = function() -- telescope don't have builtin undotree
                 vim.cmd 'packadd undotree'
                 vim.cmd 'Undotree'

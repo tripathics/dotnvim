@@ -15,6 +15,13 @@ local function gh(src) return 'https://github.com/' .. src .. '.git' end
 ---@field mode? string|string[]
 ---@field desc? string
 
+---@alias CommandOpts { nargs?: string, bang?: boolean, complete?: function, desc?: string }
+
+---@class Command
+---
+---@field [1] string
+---@field [2]? CommandOpts
+
 ---@class Spec
 ---
 ---@field src string Short url (user/repo)
@@ -29,6 +36,10 @@ local function gh(src) return 'https://github.com/' .. src .. '.git' end
 ---Lazily load plugin on these events
 ---@field events PluginEvents
 ---@field pattern? string|string[]
+---
+---Lazily load plugin when one of these user commands is invoked. The command
+---delegates to the plugin's own command of the same name after loading.
+---@field commands? Command[]
 
 ---Do vim.pack.add and load
 ---@param specs Spec[]
@@ -67,10 +78,23 @@ local function install(specs, packadd_opts)
         end
         loaders_by_src[spec.src] = setup
 
-        if not spec.events and not spec.keys then setup() end
+        if not spec.commands and not spec.events and not spec.keys then setup() end
 
         if spec.events then
             vim.api.nvim_create_autocmd(spec.events, { once = true, pattern = spec.pattern, callback = setup })
+        end
+
+        if spec.commands then
+            for _, cmd in ipairs(spec.commands) do
+                local cmd_name, cmd_opts = cmd[1], cmd[2] or {}
+                vim.api.nvim_create_user_command(cmd_name, function(args)
+                    vim.api.nvim_del_user_command(cmd_name)
+                    setup()
+                    local bang = args.bang and '!' or ''
+                    local rhs = args.args ~= '' and (' ' .. args.args) or ''
+                    vim.cmd(cmd_name .. bang .. rhs)
+                end, vim.tbl_extend('keep', cmd_opts, { nargs = '*', bang = false }))
+            end
         end
 
         if spec.keys then

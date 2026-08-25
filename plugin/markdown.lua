@@ -29,16 +29,19 @@ add {
         events = { 'FileType' },
         pattern = 'markdown',
         config = function()
-            -- vim.api.nvim_create_user_command('MarkdownPreviewBuild', function() vim.fn['mkdp#util#install']() end)
-            vim.api.nvim_create_user_command('MarkdownPreviewBuild', function()
-                for p in vim.o.packpath:gmatch '[a-zA-Z0-9/.]+' do
-                    local dirs = vim.fs.find(
-                        { 'markdown-preview.nvim' },
-                        { limit = math.huge, type = 'directory', path = p }
-                    )
-                    if #dirs == 1 then vim.system({ 'bash', '-c', 'cd', dirs[1], '&&', 'npm', 'run', 'build' }):wait() end
-                end
-            end)
+            vim.api.nvim_create_user_command('MarkdownPreviewBuild', function() vim.fn['mkdp#util#install']() end)
+            -- vim.api.nvim_create_user_command('MarkdownPreviewBuild', function()
+            --     for p in vim.o.packpath:gmatch '[a-zA-Z0-9/.]+' do
+            --         local dirs = vim.fs.find(
+            --             { 'markdown-preview.nvim' },
+            --             { limit = math.huge, type = 'directory', path = p }
+            --         )
+            --         if #dirs == 1 then
+            --             local obj = vim.system({ 'bash', '-c', 'cd ' .. dirs[1] .. ' && npm run build' }):wait()
+            --             print(vim.inspect(obj))
+            --         end
+            --     end
+            -- end)
         end,
     },
 }

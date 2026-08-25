@@ -9,6 +9,7 @@ local picker_defs = {
     help_tags = { keys = '<leader>fh', desc = 'Find Help tags' },
     keymaps = { keys = '<leader>fk', desc = 'Find Keymaps' },
     resume = { keys = '<leader>f<', desc = 'Find Resume' },
+    registers = { keys = '<leader>fr', desc = 'Find Registers' },
     live_grep = { keys = '<leader>fs', desc = 'Find live grep Search' },
     oldfiles = { keys = '<leader>f.', desc = 'Find old files' },
     blines = { keys = '<leader>/', desc = 'Search Buf Lines' },
@@ -35,6 +36,7 @@ M.keymaps = vim.tbl_values(vim.tbl_map(function(def) return { def.keys, desc = d
 ---@field help_tags PickerAction
 ---@field keymaps PickerAction
 ---@field resume PickerAction
+---@field registers PickerAction
 ---@field live_grep PickerAction
 ---@field oldfiles PickerAction
 ---@field blines PickerAction

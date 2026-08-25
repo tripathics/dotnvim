@@ -1,44 +1,65 @@
 local add = require('utils.pack').add
 
-add {
+local parsers = {
+    'angular',
+    'bash',
+    'c',
+    'cpp',
+    'fish',
+    'gitcommit',
+    'go',
+    'graphql',
+    'html',
+    'hyprlang',
+    'java',
+    'javascript',
+    'json',
+    'json5',
+    'lua',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'query',
+    'rasi',
+    'regex',
+    'rust',
+    'scss',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml',
+}
+
+local loaders = add {
     {
         src = 'tripathics/nvim-treesitter',
         config = function()
             local ts = require 'nvim-treesitter'
             ts.setup { prefer_git = true }
-            ts.install {
-                'angular',
-                'bash',
-                'c',
-                'cpp',
-                'fish',
-                'gitcommit',
-                'go',
-                'graphql',
-                'html',
-                'hyprlang',
-                'java',
-                'javascript',
-                'json',
-                'json5',
-                'lua',
-                'markdown',
-                'markdown_inline',
-                'python',
-                'query',
-                'rasi',
-                'regex',
-                'rust',
-                'scss',
-                'toml',
-                'tsx',
-                'typescript',
-                'vim',
-                'vimdoc',
-                'yaml',
-            }
         end,
+        commands = {
+            { 'TSInstall', { nargs = '+', bang = true } },
+            { 'TSInstallFromGrammar', { nargs = '+', bang = true } },
+            { 'TSUpdate', { nargs = '*' } },
+            { 'TSUninstall', { nargs = '+' } },
+        },
     },
+}
+local load_ts = loaders['tripathics/nvim-treesitter']
+
+vim.api.nvim_create_user_command('TSInstallParsers', function()
+    load_ts()
+    require('nvim-treesitter').install(parsers)
+end, { desc = 'Install all configured treesitter parsers', nargs = 0 })
+
+vim.api.nvim_create_user_command('TSUpdateParsers', function()
+    load_ts()
+    require('nvim-treesitter').update(parsers)
+end, { desc = 'Update all configured treesitter parsers', nargs = 0 })
+
+add {
     {
         src = 'nvim-treesitter/nvim-treesitter-context',
         config = function()
