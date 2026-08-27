@@ -29,6 +29,7 @@ add {
         events = { 'BufReadPre', 'BufNewFile' },
         config = function()
             require('gitsigns').setup {
+                sign_priority = 9999,
                 on_attach = function(bufnr)
                     local gs = require 'gitsigns'
 

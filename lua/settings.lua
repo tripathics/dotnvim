@@ -23,10 +23,10 @@ vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
 -- left gutter
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'yes:2'
 
 -- folds
-vim.wo.foldcolumn = '1'
+vim.wo.foldcolumn = 'auto:1'
 vim.opt.foldlevelstart = 99
 vim.wo.foldtext = ''
 
