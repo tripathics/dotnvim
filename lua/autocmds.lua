@@ -16,6 +16,17 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+-- mkview and loadview automatically
+local fold_group = vim.api.nvim_create_augroup('tripathics/remember_folds', { clear = true })
+vim.api.nvim_create_autocmd('BufWinLeave', {
+    group = fold_group,
+    callback = function() vim.cmd 'silent! mkview' end,
+})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    group = fold_group,
+    callback = function() vim.cmd 'silent! loadview' end,
+})
+
 -- set angular filetypes
 local angularFtGroup = vim.api.nvim_create_augroup('tripathics/angular_ft_group', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {

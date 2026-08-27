@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codecompanion.nvim": {
-      "rev": "6fb43a1754956198f94df141de5e185a12a52c4d",
+      "rev": "c39ddadd1d4e4f976d5c165348bd89eed98e3178",
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
     },
     "conform.nvim": {
@@ -49,10 +49,6 @@
       "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
-    "nvim-treesitter": {
-      "rev": "797f2be916a7f5a147c433a3c14822a0eb77ad35",
-      "src": "https://github.com/tripathics/nvim-treesitter.git"
-    },
     "nvim-treesitter-context": {
       "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context.git"
@@ -72,6 +68,10 @@
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git"
+    },
+    "tree-sitter-manager.nvim": {
+      "rev": "023590c8f068788a0513a4409bf37ff7f9d1deff",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim.git"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",

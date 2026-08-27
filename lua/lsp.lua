@@ -88,6 +88,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev) onAttach(ev.data.client_id, ev.buf) end,
 })
 
+local default_enabled_servers = {
+    'basedpyright',
+    'bashls',
+    'clangd',
+    'cssls',
+    'gopls',
+    'lua_ls',
+    'tsc',
+}
+
 vim.api.nvim_create_autocmd('VimEnter', {
     once = true,
     callback = function()
@@ -95,6 +105,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
         if ok then vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities(nil, true) }) end
         local servers = vim.iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
             :map(function(file) return vim.fn.fnamemodify(file, ':t:r') end)
+            :filter(function(server_name) return vim.tbl_contains(default_enabled_servers, server_name) end)
             :totable()
         vim.lsp.enable(servers)
     end,

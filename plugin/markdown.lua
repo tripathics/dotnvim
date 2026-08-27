@@ -14,15 +14,13 @@ add {
                     language = false,
                 },
             }
-        end,
-        events = { 'FileType' },
-        keys = {
-            {
+            vim.keymap.set(
+                'n',
                 '<leader>tm',
                 function() require('render-markdown').buf_toggle() end,
-                desc = 'Toggle render markdown',
-            },
-        },
+                { desc = 'Toggle render markdown' }
+            )
+        end,
     },
     {
         src = 'iamcco/markdown-preview.nvim',

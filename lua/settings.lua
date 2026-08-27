@@ -67,3 +67,6 @@ vim.opt.smartcase = true
 -- completion (took from maria solos)
 vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.pumheight = 15
+
+-- use project local configs
+vim.o.exrc = true
