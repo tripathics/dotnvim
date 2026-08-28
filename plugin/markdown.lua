@@ -27,7 +27,11 @@ add {
         events = { 'FileType' },
         pattern = 'markdown',
         config = function()
-            vim.api.nvim_create_user_command('MarkdownPreviewBuild', function() vim.fn['mkdp#util#install']() end)
+            vim.api.nvim_create_user_command(
+                'MarkdownPreviewBuild',
+                function() vim.fn['mkdp#util#install']() end,
+                { desc = 'Install Markdown Preview' }
+            )
             -- vim.api.nvim_create_user_command('MarkdownPreviewBuild', function()
             --     for p in vim.o.packpath:gmatch '[a-zA-Z0-9/.]+' do
             --         local dirs = vim.fs.find(

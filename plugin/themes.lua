@@ -7,7 +7,11 @@ add({
         events = { 'ColorSchemePre' },
         pattern = { 'rose-pine', 'rose-pine-moon', 'rose-pine-dawn', 'rose-pine-main' },
     },
-    { src = 'rebelot/kanagawa.nvim', config = function() vim.cmd.colorscheme 'kanagawa-dragon' end },
+    {
+        src = 'rebelot/kanagawa.nvim',
+        events = { 'ColorSchemePre' },
+        pattern = { 'kanagawa', 'kanagawa-dragon', 'kanagawa-lotus', 'kanagawa-wave' },
+    },
     {
         src = 'neanias/everforest-nvim',
         events = { 'ColorSchemePre' },

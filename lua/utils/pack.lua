@@ -126,8 +126,15 @@ local function install(specs, packadd_opts)
     return loaders_by_src
 end
 
----@param specs Spec[]
----@param confirm boolean|nil
-M.add = function(specs, confirm) return install(specs, { confirm = confirm }) end
+---@overload fun(specs: Spec[], confirm?: boolean): table<string, fun()>
+---@overload fun(specs: Spec, confirm?: boolean): fun()
+M.add = function(specs, confirm)
+    if specs.src then
+        local loaders = install({ specs }, { confirm = confirm })
+        local loader = loaders[specs.src]
+        return loader
+    end
+    return install(specs, { confirm = confirm })
+end
 
 return M

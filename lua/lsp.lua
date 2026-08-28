@@ -22,20 +22,20 @@ vim.diagnostic.config {
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', 'gk', function()
+vim.keymap.set('n', '<leader>td', function()
     local new_virtual_lines = not vim.diagnostic.config().virtual_lines
     if new_virtual_lines == true then
         vim.diagnostic.config {
             virtual_lines = true,
             virtual_text = false,
         }
-        vim.notify 'Virtual lines visible'
+        vim.notify 'Diagnostic: Virtual lines visible'
     else
         vim.diagnostic.config {
             virtual_lines = false,
             virtual_text = default_virtual_text_config,
         }
-        vim.notify 'Virtual lines hidden'
+        vim.notify 'Diagnostic: Virtual lines hidden'
     end
 end, { desc = 'Toggle diagnoistic virtual lines' })
 

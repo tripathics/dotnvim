@@ -1,8 +1,21 @@
-local textYankGroup = vim.api.nvim_create_augroup('text-yank-group', { clear = true })
-
+local textYankGroup = vim.api.nvim_create_augroup('text_yank_group', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = textYankGroup,
     callback = function() vim.hl.hl_op() end,
+})
+
+local rnuToggleGroup = vim.api.nvim_create_augroup('tripathics/relative_line_numbers', { clear = true })
+vim.api.nvim_create_autocmd('WinEnter', {
+    group = rnuToggleGroup,
+    callback = function()
+        if vim.wo.number then vim.wo.relativenumber = true end
+    end,
+})
+vim.api.nvim_create_autocmd('WinLeave', {
+    group = rnuToggleGroup,
+    callback = function()
+        if vim.wo.number then vim.wo.relativenumber = false end
+    end,
 })
 
 -- now we have to autostart treesitter ourselves
@@ -35,21 +48,22 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     callback = function() vim.bo.filetype = 'htmlangular' end,
 })
 
-local angularlsFixes = vim.api.nvim_create_augroup('tripathics/angularls_fixes', { clear = true })
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = angularlsFixes,
-    callback = function(ev)
-        local angularls_clients = vim.lsp.get_clients { bufnr = ev.buf, name = 'angularls' }
-        if #angularls_clients == 0 then return end
-
-        -- potential clients
-        local ts_clients = {
-            ts_ls = true,
-            vtsls = true,
-        }
-
-        for _, cl in ipairs(vim.lsp.get_clients { bufnr = ev.buf }) do
-            if ts_clients[cl.name] then cl.server_capabilities.referencesProvider = false end
-        end
-    end,
-})
+-- local angularlsFixes = vim.api.nvim_create_augroup('tripathics/angularls_fixes', { clear = true })
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--     group = angularlsFixes,
+--     callback = function(ev)
+--         local angularls_clients = vim.lsp.get_clients { bufnr = ev.buf, name = 'angularls' }
+--         if #angularls_clients == 0 then return end
+--
+--         -- potential clients
+--         local ts_clients = {
+--             ts_ls = true,
+--             vtsls = true,
+--             tsc = true,
+--         }
+--
+--         for _, cl in ipairs(vim.lsp.get_clients { bufnr = ev.buf }) do
+--             if ts_clients[cl.name] then cl.server_capabilities.referencesProvider = false end
+--         end
+--     end,
+-- })

@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codecompanion.nvim": {
-      "rev": "c39ddadd1d4e4f976d5c165348bd89eed98e3178",
+      "rev": "6db36f4a3d9bd10a3ca9ca2a3fd9ca1973acaff2",
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
     },
     "conform.nvim": {
@@ -41,6 +41,10 @@
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
+    "mini.statuscolumn": {
+      "rev": "a7e533119f2cb5e4dcbaa584c308089d94c51f99",
+      "src": "https://github.com/nvim-mini/mini.statuscolumn.git"
+    },
     "mini.statusline": {
       "rev": "127997ebef7ef632161203b960c5ef9d158f4810",
       "src": "https://github.com/nvim-mini/mini.statusline.git"
@@ -64,6 +68,10 @@
     "rose-pine": {
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim.git"
+    },
+    "telescope-ui-select.nvim": {
+      "rev": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
+      "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim.git"
     },
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",

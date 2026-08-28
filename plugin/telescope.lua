@@ -2,7 +2,7 @@ local isLinux = vim.fn.has 'linux' == 1
 local picker_util = require 'utils.picker'
 local add = require('utils.pack').add
 
-local spec = {
+local loader = add {
     src = 'nvim-telescope/telescope.nvim',
     keys = isLinux and {} or picker_util.keymaps,
     config = function()
@@ -108,10 +108,8 @@ local spec = {
     end,
 }
 
-local loaders = add { spec }
-
 if not isLinux then
-    picker_util.register_ui_select(loaders[spec.src], function()
+    picker_util.register_ui_select(loader, function()
         add { { src = 'nvim-telescope/telescope-ui-select.nvim' } }
         pcall(require('telescope').load_extension, 'ui-select')
     end)

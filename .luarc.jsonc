@@ -31,6 +31,7 @@
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.ai/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.clue/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.icons/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.statuscolumn/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.statusline/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.surround/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",

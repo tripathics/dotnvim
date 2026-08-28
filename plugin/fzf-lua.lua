@@ -2,7 +2,7 @@ local isLinux = vim.fn.has 'linux' == 1
 local add = require('utils.pack').add
 local picker_util = require 'utils.picker'
 
-local fzf_lua_spec = {
+local loader = add {
     src = 'ibhagwan/fzf-lua',
     keys = isLinux and picker_util.keymaps or {},
     config = function()
@@ -55,11 +55,4 @@ local fzf_lua_spec = {
     end,
 }
 
-local loaders = add { fzf_lua_spec }
-
-if isLinux then
-    picker_util.register_ui_select(
-        loaders[fzf_lua_spec.src],
-        function() pcall(require('fzf-lua').register_ui_select) end
-    )
-end
+if isLinux then picker_util.register_ui_select(loader, function() pcall(require('fzf-lua').register_ui_select) end) end

@@ -14,7 +14,6 @@ vim.opt.breakindent = true
 
 -- [[ Look and feel ]]
 -- fonts
-vim.opt.guifont = 'Lilex:h14'
 vim.opt.termguicolors = true
 
 vim.opt.showmode = false
@@ -23,11 +22,11 @@ vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
 -- left gutter
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.wo.signcolumn = 'yes:2'
+vim.wo.signcolumn = 'yes'
 
 -- folds
 vim.wo.foldcolumn = 'auto:1'
-vim.opt.foldlevelstart = 99
+vim.wo.foldmethod = 'manual'
 vim.wo.foldtext = ''
 
 vim.opt.fillchars = {
