@@ -35,4 +35,9 @@ add({
             }
         end,
     },
+    {
+        src = 'nvim-mini/mini.hues',
+        events = { 'ColorSchemePre' },
+        pattern = { 'miniautumn', 'minispring', 'minisummer', 'miniwinter' },
+    },
 }, true)

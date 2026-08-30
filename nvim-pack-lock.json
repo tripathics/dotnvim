@@ -37,6 +37,10 @@
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
       "src": "https://github.com/iamcco/markdown-preview.nvim.git"
     },
+    "mini.hues": {
+      "rev": "060118f16031efb85a69d5172fed2dfb0d359784",
+      "src": "https://github.com/nvim-mini/mini.hues.git"
+    },
     "mini.icons": {
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons.git"

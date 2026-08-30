@@ -1,5 +1,6 @@
 local add = require('utils.pack').add
 
+vim.g.format_on_save = true -- format on save by default
 local function toggle_format_on_save()
     vim.g.format_on_save = not (vim.g.format_on_save or false)
 
@@ -7,7 +8,7 @@ local function toggle_format_on_save()
     vim.notify(state .. ': Format on save', vim.log.levels.INFO)
 end
 
-add {
+local conform_loader = add {
     src = 'stevearc/conform.nvim',
     events = { 'BufWritePre' },
     config = function()
@@ -25,20 +26,6 @@ add {
             notify_on_error = true,
             notify_no_formatters = true,
         }
-        vim.g.format_on_save = true -- format on save by default
-
-        local group = vim.api.nvim_create_augroup('tripathics/format_on_save', { clear = true })
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            group = group,
-            callback = function()
-                -- if not vim.g.format_on_save then return end
-
-                require('conform').format {
-                    lsp_format = 'fallback',
-                    timeout_ms = 500,
-                }
-            end,
-        })
     end,
     keys = {
         {
@@ -53,3 +40,17 @@ add {
         },
     },
 }
+
+local group = vim.api.nvim_create_augroup('tripathics/format_on_save', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+    group = group,
+    callback = function()
+        if not vim.g.format_on_save then return end
+        conform_loader()
+
+        require('conform').format {
+            lsp_format = 'fallback',
+            timeout_ms = 500,
+        }
+    end,
+})
