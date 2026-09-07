@@ -89,6 +89,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local default_enabled_servers = {
+    'angularls',
     'basedpyright',
     'bashls',
     'clangd',

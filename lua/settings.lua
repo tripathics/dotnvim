@@ -23,7 +23,7 @@ vim.o.cursorlineopt = 'number'
 -- left gutter
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'number'
 
 -- folds
 vim.wo.foldcolumn = 'auto:1'
