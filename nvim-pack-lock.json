@@ -1,12 +1,16 @@
 {
   "plugins": {
+    "arborist.nvim": {
+      "rev": "fdeef56c2840c6772b9f68c5774ed87e9340ec7d",
+      "src": "https://github.com/arborist-ts/arborist.nvim.git"
+    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp.git",
       "version": "1.0.0 - 2.0.0"
     },
     "codecompanion.nvim": {
-      "rev": "6db36f4a3d9bd10a3ca9ca2a3fd9ca1973acaff2",
+      "rev": "f73f40e9971a63358e1903ef814bce980e1d3818",
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
     },
     "conform.nvim": {
@@ -18,7 +22,7 @@
       "src": "https://github.com/neanias/everforest-nvim.git"
     },
     "fidget": {
-      "rev": "6f793b2bcd2d35e201c09520f698bb763220908a",
+      "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
@@ -46,7 +50,7 @@
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
     "mini.statuscolumn": {
-      "rev": "a7e533119f2cb5e4dcbaa584c308089d94c51f99",
+      "rev": "8d3560f5d0e4dd75490acf14fd60ea82e676b86c",
       "src": "https://github.com/nvim-mini/mini.statuscolumn.git"
     },
     "mini.statusline": {
@@ -73,17 +77,9 @@
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim.git"
     },
-    "telescope-ui-select.nvim": {
-      "rev": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
-      "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim.git"
-    },
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git"
-    },
-    "tree-sitter-manager.nvim": {
-      "rev": "023590c8f068788a0513a4409bf37ff7f9d1deff",
-      "src": "https://github.com/romus204/tree-sitter-manager.nvim.git"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",

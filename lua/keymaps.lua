@@ -3,10 +3,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- [[ Windows ]]
 -- Use CTRL+<hjkl> to switch between windows
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<M-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<M-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<M-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<M-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- resizing windows
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>', { desc = 'Increase window height' })
@@ -22,6 +22,10 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and go to center' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right staying in visual mode' })
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left staying in visual mode' })
 
+-- yanking
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to plus reg' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Put from plus reg' })
+
 -- folds
 -- Create folds in visual mode, close fold if exists in normal mode
 vim.keymap.set({ 'n', 'v' }, 'zc', function()
@@ -32,7 +36,10 @@ vim.keymap.set({ 'n', 'v' }, 'zc', function()
         return 'zc'
     end
     vim.notify("Nothing selected. Can't fold", vim.log.levels.WARN)
-end, { expr = true, desc = 'Create/Close fold' })
+end, { expr = true, desc = 'Create/Close fold' }) -- treesitter keymaps
+
+vim.keymap.set({ 'x', 'o' }, '+', 'an', { remap = true, desc = 'Treesitter: Expand selection' })
+vim.keymap.set({ 'x', 'o' }, '-', 'in', { remap = true, desc = 'Treesitter: Shrink selection' })
 
 -- [[ MISC ]]
 
@@ -52,11 +59,7 @@ end, { desc = 'Change directory to the directory containing the current file' })
 vim.keymap.set('n', '<C-w>c', '<cmd>hide<CR>', { desc = '[C]lose window' })
 
 -- Terminal keymaps
-TERM = vim.uv.os_uname().sysname ~= 'Linux' and 'bash' or nil
-
--- treesitter keymaps
-vim.keymap.set('x', '+', 'an', { remap = true, desc = 'Treesitter: Expand selection' })
-vim.keymap.set('x', '-', 'in', { remap = true, desc = 'Treesitter: Shrink selection' })
+local TERM = vim.uv.os_uname().sysname ~= 'Linux' and 'bash' or nil
 
 vim.keymap.set('n', '<leader>tt', function()
     vim.cmd.tabnew()

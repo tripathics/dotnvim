@@ -71,8 +71,8 @@ add {
             content = {
                 active = function(data)
                     local gitsigns_sign = gitsigns.statuscolumn(data.buf_id)
-                    if vim.v.virtnum > 0 then return '  %=↳ %C' .. gitsigns_sign end
-                    return '%s%=%l %C' .. gitsigns_sign
+                    if vim.v.virtnum > 0 then return '%=%C↳' .. gitsigns_sign end
+                    return '%s%=%C%l' .. gitsigns_sign
                 end,
                 inactive = nil,
             },

@@ -32,8 +32,9 @@ add {
     {
         src = 'nvim-mini/mini.icons',
         config = function()
-            require('mini.icons').setup { style = 'glyph' }
-            require('mini.icons').mock_nvim_web_devicons()
+            local mini_icons = require 'mini.icons'
+            mini_icons.setup { style = 'glyph' }
+            mini_icons.mock_nvim_web_devicons()
         end,
     },
     {

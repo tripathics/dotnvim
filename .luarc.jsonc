@@ -36,7 +36,7 @@
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.statusline/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.surround/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
-      "$XDG_DATA_HOME/nvim/site/pack/core/opt/tree-sitter-manager.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/arborist.nvim/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/render-markdown.nvim/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/telescope.nvim/lua",
     ]

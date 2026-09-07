@@ -20,29 +20,25 @@ vim.opt.showmode = false
 -- cursor
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
-vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor'
 -- left gutter
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.wo.signcolumn = 'yes'
 
 -- folds
-vim.wo.foldcolumn = 'auto:3'
+vim.wo.foldcolumn = 'auto:1'
 vim.wo.foldmethod = 'manual'
 vim.wo.foldtext = ''
 
 -- save these view options
-vim.opt.viewoptions = {
-    'cursor',
-    'folds',
-}
+vim.opt.viewoptions = { 'folds' }
 
 vim.opt.fillchars = {
     eob = ' ',
     fold = '·',
-    foldclose = '',
-    foldopen = '',
-    foldsep = '╎',
+    foldclose = '',
+    foldopen = '',
+    foldsep = ' ',
     foldinner = ' ',
     msgsep = '─',
 }
@@ -59,7 +55,6 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.inccommand = 'split'
 
-vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 vim.opt.undofile = true
 vim.opt.confirm = true
 vim.opt.mouse = 'a'
