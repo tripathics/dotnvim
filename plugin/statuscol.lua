@@ -70,12 +70,13 @@ add {
         require('mini.statuscolumn').setup {
             content = {
                 active = function(data)
+                    local baseColumns = vim.v.virtnum > 0 and '%=↳%C' or '%=%l%C'
+
                     local buftype = vim.bo[data.buf_id].buftype
-                    if buftype == 'help' or buftype == 'terminal' then return '%C%l' end
+                    if buftype ~= '' then return baseColumns end
 
                     local gitsigns_sign = gitsigns.statuscolumn(data.buf_id)
-                    if vim.v.virtnum > 0 then return '%=%C↳' .. gitsigns_sign end
-                    return '%=%C%l' .. gitsigns_sign
+                    return gitsigns_sign .. baseColumns
                 end,
                 inactive = nil,
             },

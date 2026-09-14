@@ -22,10 +22,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and go to center' })
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent right staying in visual mode' })
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent left staying in visual mode' })
 
--- yanking
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Yank to plus reg' })
-vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = 'Put from plus reg' })
-
 -- folds
 -- Create folds in visual mode, close fold if exists in normal mode
 vim.keymap.set({ 'n', 'v' }, 'zc', function()
@@ -75,3 +71,4 @@ end, { desc = 'Open a [t]erminal [s]mall' })
 
 -- Toggles
 vim.keymap.set('n', '<leader>tw', function() vim.cmd 'set wrap!' end, { desc = '[T]oggle word wrap' })
+vim.keymap.set('n', '<leader>tg', function() vim.cmd 'setlocal spell!' end, { desc = '[T]oggle spell check' })

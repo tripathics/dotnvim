@@ -4,6 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- sync with OS clipboard
+vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+
 -- [[ Editing ]]
 -- indentation (2 spaces, JS)
 vim.opt.shiftwidth = 2
@@ -26,7 +29,7 @@ vim.opt.relativenumber = true
 vim.wo.signcolumn = 'number'
 
 -- folds
-vim.wo.foldcolumn = 'auto:1'
+vim.wo.foldcolumn = '1'
 vim.wo.foldmethod = 'manual'
 vim.wo.foldtext = ''
 
@@ -36,8 +39,8 @@ vim.opt.viewoptions = { 'folds' }
 vim.opt.fillchars = {
     eob = ' ',
     fold = '·',
-    foldclose = '',
-    foldopen = '',
+    foldclose = '-',
+    foldopen = '+',
     foldsep = ' ',
     foldinner = ' ',
     msgsep = '─',

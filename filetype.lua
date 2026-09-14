@@ -9,4 +9,7 @@ vim.filetype.add {
                 or nil
         end,
     },
+    extension = {
+        ['mdx'] = 'markdown',
+    },
 }

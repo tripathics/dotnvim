@@ -1,43 +1,67 @@
-----
---- Diagnostic config
-----
-local default_virtual_text_config = {
-    current_line = true,
-    virt_text_pos = 'eol_right_align',
-}
-
 -- Diagnostic config
 vim.diagnostic.config {
     severity_sort = true,
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '×',
-            [vim.diagnostic.severity.WARN] = '!',
-            [vim.diagnostic.severity.INFO] = 'i',
-            [vim.diagnostic.severity.HINT] = '?',
+            [vim.diagnostic.severity.ERROR] = '× ',
+            [vim.diagnostic.severity.WARN] = '! ',
+            [vim.diagnostic.severity.INFO] = 'i ',
+            [vim.diagnostic.severity.HINT] = '? ',
         },
     },
-    virtual_text = default_virtual_text_config,
+    virtual_lines = false,
+    virtual_text = {
+        current_line = true,
+        virt_text_pos = 'eol_right_align',
+    },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>td', function()
-    local new_virtual_lines = not vim.diagnostic.config().virtual_lines
-    if new_virtual_lines == true then
+local function cycle_virtual_lines()
+    local function get_curr_n_next_cfg()
+        local cfg = vim.diagnostic.config()
+        if cfg == nil then
+            return 'virtual_text_current', 'virtual_text'
+        end
+
+        if cfg.virtual_lines == true or cfg.virtual_text == false then
+            return 'virtual_line', 'virtual_text_current'
+        end
+
+        if cfg.virtual_text.current_line == true then
+            return 'virtual_text_current', 'virtual_text'
+        end
+
+        return 'virtual_text', 'virtual_line'
+    end
+
+    local _, next = get_curr_n_next_cfg()
+    if next == 'virtual_text_current' then
+        vim.diagnostic.config {
+            virtual_lines = false,
+            virtual_text = {
+                current_line = true,
+                virt_text_pos = 'eol_right_align',
+            },
+        }
+    elseif next == 'virtual_text' then
+        vim.diagnostic.config {
+            virtual_lines = false,
+            virtual_text = {
+                virt_text_pos = 'eol_right_align',
+            },
+        }
+    elseif next == 'virtual_line' then
         vim.diagnostic.config {
             virtual_lines = true,
             virtual_text = false,
         }
-        vim.notify 'Diagnostic: Virtual lines visible'
-    else
-        vim.diagnostic.config {
-            virtual_lines = false,
-            virtual_text = default_virtual_text_config,
-        }
-        vim.notify 'Diagnostic: Virtual lines hidden'
     end
-end, { desc = 'Toggle diagnoistic virtual lines' })
+    vim.notify('Diagnostic: ' .. next)
+end
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>td', function() cycle_virtual_lines() end, { desc = 'Toggle diagnoistic virtual lines' })
 
 --- Setup keymaps and autocmds for given buffer
 ---@param client_id integer
@@ -45,7 +69,9 @@ end, { desc = 'Toggle diagnoistic virtual lines' })
 ---@return boolean
 local function onAttach(client_id, bufnr)
     local client = assert(vim.lsp.get_client_by_id(client_id))
-    if not client then return false end
+    if not client then
+        return false
+    end
 
     ---Map keys for LSP actions
     ---@param keys string
@@ -88,25 +114,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev) onAttach(ev.data.client_id, ev.buf) end,
 })
 
-local default_enabled_servers = {
-    'angularls',
-    'basedpyright',
-    'bashls',
-    'clangd',
-    'cssls',
-    'gopls',
-    'lua_ls',
-    'tsc',
-}
+local disabled_servers = { 'vtsls' }
 
 vim.api.nvim_create_autocmd('VimEnter', {
     once = true,
     callback = function()
         local ok, blink = pcall(require, 'blink.cmp')
-        if ok then vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities(nil, true) }) end
+        if ok then
+            vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities(nil, true) })
+        end
         local servers = vim.iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
             :map(function(file) return vim.fn.fnamemodify(file, ':t:r') end)
-            :filter(function(server_name) return vim.tbl_contains(default_enabled_servers, server_name) end)
+            :filter(function(server_name) return not vim.tbl_contains(disabled_servers, server_name) end)
             :totable()
         vim.lsp.enable(servers)
     end,
