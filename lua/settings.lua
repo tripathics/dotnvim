@@ -51,7 +51,7 @@ vim.o.scrolloff = 2
 
 vim.opt.linebreak = true
 vim.opt.list = true -- list (show) invisible characters
-vim.opt.listchars = { tab = '» ', trail = '·' }
+vim.opt.listchars = { tab = '› ', trail = '·' }
 
 -- how/when we split
 vim.opt.splitright = true
