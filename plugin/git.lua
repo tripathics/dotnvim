@@ -14,8 +14,6 @@ add {
             { '<leader>gc', '<cmd>0Gclog!<CR>', desc = 'Git log this file' },
             { '<leader>gd', '<cmd>Gvdiffsplit!<CR>', desc = 'Git diff this' },
             { '<leader>gD', ':Gvdiffsplit HEAD~1 ', desc = 'Git Diff command' },
-            { 'gu', '<cmd>diffget //2<CR>', desc = 'Get ours' },
-            { 'gh', '<cmd>diffget //3<CR>', desc = 'Get theirs' },
         }
 
         for _, key in ipairs(keys) do

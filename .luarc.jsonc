@@ -21,6 +21,7 @@
       "lua/icons.lua",
       "lua/vim-pack.lua",
       // Include some plugins for API completion.
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/arborist.nvim/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/blink.cmp/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/codecompanion.nvim/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/conform.nvim/lua/",
@@ -36,9 +37,8 @@
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.statusline/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/mini.surround/lua",
       "$XDG_DATA_HOME/nvim/site/pack/core/opt/nvim-treesitter-context/lua",
-      "$XDG_DATA_HOME/nvim/site/pack/core/opt/arborist.nvim/lua",
-      "$XDG_DATA_HOME/nvim/site/pack/core/opt/render-markdown.nvim/lua",
-      "$XDG_DATA_HOME/nvim/site/pack/core/opt/telescope.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/scry.nvim/lua",
+      "$XDG_DATA_HOME/nvim/site/pack/core/opt/telescope.nvim/lua"
     ]
   }
 }

@@ -1,8 +1,9 @@
 local M = {}
 
----Return github url
----@param src string
-local function gh(src) return 'https://github.com/' .. src .. '.git' end
+local git_hosts = {
+    github = function(src) return 'https://github.com/' .. src .. '.git' end,
+    codeberg = function(src) return 'https://codeberg.org/' .. src .. '.git' end,
+}
 
 ---@alias PluginConfig function|nil
 ---@alias PluginEvents vim.api.keyset.events[]|nil
@@ -25,6 +26,7 @@ local function gh(src) return 'https://github.com/' .. src .. '.git' end
 ---@class Spec
 ---
 ---@field src string Short url (user/repo)
+---@field git_host? string Git host 'github' or 'codeberg'
 ---@field version? string|vim.VersionRange
 ---@field name? string Plugin name (dir under which plugin is installed)
 ---
@@ -53,32 +55,45 @@ local function install(specs, packadd_opts)
     for _, spec in ipairs(specs) do
         local name = spec.name or spec.src:match '([^/]+)$'
         by_name[name] = spec
+
+        local get_full_src = git_hosts[spec.git_host or 'github'] or git_hosts['github']
+
         sources[#sources + 1] = {
-            src = gh(spec.src),
+            src = get_full_src(spec.src),
             name = spec.name,
             version = spec.version,
         }
     end
-    if #sources == 0 then return loaders_by_src end
+    if #sources == 0 then
+        return loaders_by_src
+    end
 
     ---Load installed plugin
     ---@param plug { spec: vim.pack.Spec, path: string }
     local function load(plug)
         ---@type Spec
         local spec = by_name[plug.spec.name]
-        if not spec then return end
+        if not spec then
+            return
+        end
 
         local configured = false
         local setup = function()
-            if configured then return end
+            if configured then
+                return
+            end
 
             vim.cmd.packadd(vim.fn.escape(plug.spec.name, ' '))
-            if spec.config then spec.config() end
+            if spec.config then
+                spec.config()
+            end
             configured = true
         end
         loaders_by_src[spec.src] = setup
 
-        if not spec.commands and not spec.events and not spec.keys then setup() end
+        if not spec.commands and not spec.events and not spec.keys then
+            setup()
+        end
 
         if spec.events then
             vim.api.nvim_create_autocmd(spec.events, { once = true, pattern = spec.pattern, callback = setup })
@@ -125,6 +140,8 @@ local function install(specs, packadd_opts)
     })
     return loaders_by_src
 end
+
+M.git_hosts = git_hosts
 
 ---@overload fun(specs: Spec[], confirm?: boolean): table<string, fun()>
 ---@overload fun(specs: Spec, confirm?: boolean): fun()

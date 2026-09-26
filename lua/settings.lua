@@ -60,7 +60,7 @@ vim.opt.inccommand = 'split'
 
 vim.opt.undofile = true
 vim.opt.confirm = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = 'nvc'
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 500

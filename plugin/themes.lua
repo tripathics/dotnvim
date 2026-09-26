@@ -25,10 +25,6 @@ add({
                     hl.LspReferenceRead = { bg = palette.bg1 }
                     hl.LspReferenceWrite = { bg = palette.bg1, underline = true }
 
-                    -- nvim-treesitter/nvim-treesitter-context
-                    hl.TreesitterContext = { bg = palette.bg2 }
-                    hl.TreesitterContextBottom = { bg = palette.bg2, underline = true, sp = palette.grey0 }
-
                     -- diagnostics
                     hl.DiagnosticUnderlineHint = { undercurl = true, sp = palette.purple, fg = palette.none }
                 end,

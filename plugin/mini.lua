@@ -9,7 +9,7 @@ add {
                 content = {
                     active = function()
                         local git = statusline.section_git { trunc_width = 75 }
-                        local diagnostics = statusline.section_diagnostics { trunc_width = 75 }
+                        local diagnostics = statusline.section_diagnostics {}
                         local filename = statusline.section_filename { trunc_width = 140 }
                         local search = statusline.section_searchcount { trunc_width = 75 }
 

@@ -9,10 +9,10 @@ vim.keymap.set('n', '<M-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<M-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- resizing windows
-vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>', { desc = 'Increase window height' })
-vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease window height' })
-vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -4<CR>', { desc = 'Decrease window width' })
-vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +4<CR>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<M-Up>', '<cmd>resize +2<CR>', { desc = 'Increase window height' })
+vim.keymap.set('n', '<M-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<M-Left>', '<cmd>vertical resize -4<CR>', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<M-Right>', '<cmd>vertical resize +4<CR>', { desc = 'Increase window width' })
 
 -- keep everything centered while scrolling
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and go to center' })

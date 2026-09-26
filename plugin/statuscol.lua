@@ -73,7 +73,9 @@ add {
                     local baseColumns = vim.v.virtnum > 0 and '%=↳%C' or '%=%l%C'
 
                     local buftype = vim.bo[data.buf_id].buftype
-                    if buftype ~= '' then return baseColumns end
+                    if buftype ~= '' then
+                        return baseColumns
+                    end
 
                     local gitsigns_sign = gitsigns.statuscolumn(data.buf_id)
                     return gitsigns_sign .. baseColumns

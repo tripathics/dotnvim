@@ -8,13 +8,17 @@ local rnuToggleGroup = vim.api.nvim_create_augroup('tripathics/relative_line_num
 vim.api.nvim_create_autocmd('WinEnter', {
     group = rnuToggleGroup,
     callback = function()
-        if vim.wo.number then vim.wo.relativenumber = true end
+        if vim.wo.number then
+            vim.wo.relativenumber = true
+        end
     end,
 })
 vim.api.nvim_create_autocmd('WinLeave', {
     group = rnuToggleGroup,
     callback = function()
-        if vim.wo.number then vim.wo.relativenumber = false end
+        if vim.wo.number then
+            vim.wo.relativenumber = false
+        end
     end,
 })
 
@@ -25,7 +29,28 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
         local bufnr = args.buf
         -- again copied from maria
-        if vim.bo[bufnr].filetype ~= 'bigfile' then pcall(vim.treesitter.start, bufnr) end
+        if vim.bo[bufnr].filetype ~= 'bigfile' then
+            pcall(vim.treesitter.start, bufnr)
+        end
+    end,
+})
+
+-- some highlight overrides
+vim.api.nvim_create_augroup('tripathics/hl-overrides', { clear = true })
+vim.api.nvim_create_autocmd('ColorScheme', {
+    callback = function()
+        local comment_hl = vim.api.nvim_get_hl(0, { name = 'Comment' })
+        vim.api.nvim_set_hl(0, 'TreesitterContextBottom', {
+            underdotted = true,
+            sp = comment_hl.fg,
+        })
+        vim.api.nvim_set_hl(0, 'TreesitterContext', {})
+
+        local foldColHl = vim.api.nvim_get_hl(0, { name = 'FoldColumn' })
+        vim.api.nvim_set_hl(0, 'FoldColumn', {
+            bg = foldColHl.bg,
+            fg = nil,
+        })
     end,
 })
 
@@ -34,40 +59,16 @@ local fold_group = vim.api.nvim_create_augroup('tripathics/remember_folds', { cl
 vim.api.nvim_create_autocmd('BufWinLeave', {
     group = fold_group,
     callback = function()
-        if vim.bo.buftype == '' then vim.cmd 'silent! mkview' end
+        if vim.bo.buftype == '' then
+            vim.cmd 'silent! mkview'
+        end
     end,
 })
 vim.api.nvim_create_autocmd('BufWinEnter', {
     group = fold_group,
     callback = function()
-        if vim.bo.buftype == '' then vim.cmd 'silent! loadview' end
+        if vim.bo.buftype == '' then
+            vim.cmd 'silent! loadview'
+        end
     end,
 })
-
--- set angular filetypes
-local angularFtGroup = vim.api.nvim_create_augroup('tripathics/angular_ft_group', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-    group = angularFtGroup,
-    pattern = '*.component.html',
-    callback = function() vim.bo.filetype = 'htmlangular' end,
-})
-
--- local angularlsFixes = vim.api.nvim_create_augroup('tripathics/angularls_fixes', { clear = true })
--- vim.api.nvim_create_autocmd('LspAttach', {
---     group = angularlsFixes,
---     callback = function(ev)
---         local angularls_clients = vim.lsp.get_clients { bufnr = ev.buf, name = 'angularls' }
---         if #angularls_clients == 0 then return end
---
---         -- potential clients
---         local ts_clients = {
---             ts_ls = true,
---             vtsls = true,
---             tsc = true,
---         }
---
---         for _, cl in ipairs(vim.lsp.get_clients { bufnr = ev.buf }) do
---             if ts_clients[cl.name] then cl.server_capabilities.referencesProvider = false end
---         end
---     end,
--- })

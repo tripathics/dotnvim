@@ -10,7 +10,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codecompanion.nvim": {
-      "rev": "070285d5bc4546d890ec6ce78547470c8cb2657f",
+      "rev": "87205702eccd8004c93f15caee7cc2b2978d1f25",
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
     },
     "conform.nvim": {
@@ -26,11 +26,11 @@
       "src": "https://github.com/j-hui/fidget.nvim.git"
     },
     "fzf-lua": {
-      "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
+      "rev": "78b85d2a522b1e6a2d154216b3e532a1df1ad6d7",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
-      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
+      "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "kanagawa.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/nvim-mini/mini.hues.git"
     },
     "mini.icons": {
-      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
+      "rev": "f642e3ba8c12afbc8f32f6d77ef6597eac56786f",
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
     "mini.statuscolumn": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/nvim-mini/mini.statusline.git"
     },
     "mini.surround": {
-      "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
+      "rev": "33a2ebe5df8eb4751828fcba133e18ed0fbbdfab",
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nvim-treesitter-context": {
@@ -69,17 +69,21 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
-    "render-markdown": {
-      "rev": "a778444a73080301a50c4a6f58c90d7e094dd59e",
-      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
-    },
     "rose-pine": {
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim.git"
     },
+    "scry.nvim": {
+      "rev": "25f18f432abe06d691e9d0c88ff32ea297de6a65",
+      "src": "https://codeberg.org/vi6jm/scry.nvim.git"
+    },
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git"
+    },
+    "unnest.nvim": {
+      "rev": "dbe0da4a593eeb432d770fbe7a2f4f2c078d9b10",
+      "src": "https://github.com/brianhuster/unnest.nvim.git"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
